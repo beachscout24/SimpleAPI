@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+  - master
 
 pool:
   vmImage: 'windows-latest'
@@ -15,31 +15,42 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
+  - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: VSBuild@1
+    inputs:
+      solution: '$(solution)'
+      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\bin\**\*Tests.dll
-      **\bin\**\*Test.dll
-      !**\*TestAdapter.dll
-      !**\*TestCentric*.dll
-      !**\*TestHost*.dll
-      !**\*TestPlatform*.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-  displayName: Tests
+  - task: VSTest@2
+    inputs:
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: |
+        **\bin\**\*Tests.dll
+        **\bin\**\*Test.dll
+        !**\*TestAdapter.dll
+        !**\*TestCentric*.dll
+        !**\*TestHost*.dll
+        !**\*TestPlatform*.dll
+        !**\obj\**
+      searchFolder: '$(System.DefaultWorkingDirectory)'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
+    displayName: Tests
+
+  # Publish code coverage results v1
+  # Publish Cobertura or JaCoCo code coverage results from a build.
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'JaCoCo' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
+      summaryFileLocation: 'SimpleAPI_Code_Summary.html'
+      pathToSources: './src/SimpleAPI'
+      reportDirectory: './src/reports/'
+      #additionalCodeCoverageFiles: # string. Additional files.
+      #failIfCoverageEmpty: false # boolean. Fail when code coverage results are missing. Default: false.
