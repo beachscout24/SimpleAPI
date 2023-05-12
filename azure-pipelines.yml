@@ -50,7 +50,7 @@ steps:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
-      summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+      summaryFileLocation: '$(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml'
       #pathToSources: '$(Build.SourcesDirectory)'
       #reportDirectory: '$(Build.SourcesDirectory)/reports/'
       #additionalCodeCoverageFiles: # string. Additional files.
