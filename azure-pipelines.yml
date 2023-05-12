@@ -50,9 +50,9 @@ steps:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
-      summaryFileLocation: '$(Build.SourcesDirectory)/coverage/reports/Cobertura.xml'
-      pathToSources: '$(Build.SourcesDirectory)'
-      reportDirectory: '$(Build.SourcesDirectory)/reports/'
+      summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+      #pathToSources: '$(Build.SourcesDirectory)'
+      #reportDirectory: '$(Build.SourcesDirectory)/reports/'
       #additionalCodeCoverageFiles: # string. Additional files.
       #failIfCoverageEmpty: false # boolean. Fail when code coverage results are missing. Default: false.
     displayName: SimpleAPI Code Coverage
