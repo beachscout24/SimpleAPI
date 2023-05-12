@@ -53,7 +53,7 @@ steps:
     inputs:
       codeCoverageTool: 'Cobertura' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
       summaryFileLocation: 'test/SimpleAPI.Test/TestResults/**/coverage.cobertura.xml'
-      reportDirectory: 'test/SimpleAPI.Test/coverage-results'
+      #reportDirectory: 'test/SimpleAPI.Test/coverage-results'
       #additionalCodeCoverageFiles: # string. Additional files.
       #failIfCoverageEmpty: false # boolean. Fail when code coverage results are missing. Default: false.
     displayName: SimpleAPI Code Coverage
