@@ -16,10 +16,12 @@ variables:
 
 steps:
   - task: NuGetToolInstaller@1
+    displayName: Installing Nuget Tools for SimpleAPI
 
   - task: NuGetCommand@2
     inputs:
       restoreSolution: '$(solution)'
+    displayName: SimpleAPI NuGetCommand
 
   - task: VSBuild@1
     inputs:
@@ -50,9 +52,21 @@ steps:
   - task: PublishCodeCoverageResults@1
     inputs:
       codeCoverageTool: 'Cobertura' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
-      summaryFileLocation: '$(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml'
-      #pathToSources: '$(Build.SourcesDirectory)'
-      #reportDirectory: '$(Build.SourcesDirectory)/reports/'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/src/SimpleAPI/**/site/cobertura/coverage.xml'
+      pathToSources: $(System.DefaultWorkingDirectory)/src/SimpleAPI/'
+      reportDirectory: '$(System.DefaultWorkingDirectory)/src/SimpleAPI/**/site/cobertura'
       #additionalCodeCoverageFiles: # string. Additional files.
       #failIfCoverageEmpty: false # boolean. Fail when code coverage results are missing. Default: false.
     displayName: SimpleAPI Code Coverage
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish --configuration ($buildConfiguration) --output $(build.artifactStagingDirectory)'
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: 'src/SimpleAPI/SimpleAPI.csproj'
+      arguments: '--configuration ($buildConfiguration) --output $(build.artifactStagingDirectory)'
+      zipAfterPublish: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish SimpleAPI artifacts'
