@@ -1,0 +1,104 @@
+{
+  "SimpleAPI.dll": {
+    "C:\\Users\\ericw\\dev\\.net\\SimpleAPISln\\src\\SimpleAPI\\Program.cs": {
+      "Program": {
+        "System.Void Program::<Main>$(System.String[])": {
+          "Lines": {
+            "1": 0,
+            "5": 0,
+            "7": 0,
+            "8": 0,
+            "10": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "21": 0,
+            "23": 0,
+            "25": 0
+          },
+          "Branches": [
+            {
+              "Line": 13,
+              "Offset": 64,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 13,
+              "Offset": 64,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\ericw\\dev\\.net\\SimpleAPISln\\src\\SimpleAPI\\WeatherForecast.cs": {
+      "SimpleAPI.WeatherForecast": {
+        "System.DateOnly SimpleAPI.WeatherForecast::get_Date()": {
+          "Lines": {
+            "5": 5
+          },
+          "Branches": []
+        },
+        "System.Int32 SimpleAPI.WeatherForecast::get_TemperatureC()": {
+          "Lines": {
+            "7": 5
+          },
+          "Branches": []
+        },
+        "System.Int32 SimpleAPI.WeatherForecast::get_TemperatureF()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String SimpleAPI.WeatherForecast::get_Summary()": {
+          "Lines": {
+            "11": 10
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\ericw\\dev\\.net\\SimpleAPISln\\src\\SimpleAPI\\Controllers\\WeatherForecastController.cs": {
+      "SimpleAPI.Controllers.WeatherForecastController": {
+        "System.Collections.Generic.IEnumerable`1<SimpleAPI.WeatherForecast> SimpleAPI.Controllers.WeatherForecastController::Get()": {
+          "Lines": {
+            "18": 1,
+            "19": 6,
+            "20": 6,
+            "21": 6,
+            "22": 6,
+            "23": 6,
+            "24": 6,
+            "25": 1,
+            "26": 1
+          },
+          "Branches": []
+        },
+        "System.Void SimpleAPI.Controllers.WeatherForecastController::.ctor()": {
+          "Lines": {
+            "14": 3
+          },
+          "Branches": []
+        },
+        "System.Void SimpleAPI.Controllers.WeatherForecastController::.cctor()": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}
